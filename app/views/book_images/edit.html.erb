@@ -1,0 +1,16 @@
+<h1>Editing Book</h1>
+
+<%= form_for(@book_image, url: book_image_path) do |f| %>
+
+	<h3>Title</h3>
+	<%= f.text_field :title %>
+
+	<h3>Opinion</h3>
+	<%= f.text_area :body %>
+
+	<h3>Image</h3>
+	<%= f.attachment_field :image %>
+
+	<%= f.submit 'Update Book' %>
+
+<% end %>
