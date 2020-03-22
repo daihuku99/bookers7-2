@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+	<%= flash[:notice] %>
+<% end %>
 
 <div class="container">
 	<div class="row">
@@ -24,6 +27,23 @@
 						<td><%= attachment_image_tag @book_image, :image, :fill, 60, 60, format: 'jpeg', fallback: 'no_image.jpeg' %></td>
 					</tr>
 				</table>
+				<div class="comment-container">
+					<div class="comments">
+						<a href="#comments"><%= @book_image.book_comments.count %></a>
+						<h2><%= @book_image.book_comments.count %></h2>
+							<% @book_image.book_comments.each do |book_comment| %>
+								<%= book_comment.user.name %>
+								<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+								<%= book_comment.comment %>
+							<% end %>
+					</div>
+					<div class="comment-form">
+						<%= form_for [@book_image, @book_comment], url: book_comment_path do |f| %>
+							<%= f.text_area :comment, rows:'3', placeholder: "コメントここに" %>
+							<%= f.submit 'Create Comment' %>
+						<% end %>
+					</div>
+				</div>
 				<%= link_to 'Edit', edit_book_image_path(@book_image.id) %>
 				<%= link_to 'Destroy', destroy_book_image_path, method: :delete, "data-confirm" => "Are you sure?" %>
 			</div>
