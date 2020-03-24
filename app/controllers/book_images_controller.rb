@@ -1,5 +1,6 @@
 class BookImagesController < ApplicationController
-
+		before_action :authenticate_user!
+		before_action :correct_user, only: [:edit, :update, :destroy]
 	def new
 		@book_image_new = BookImage.new
 	end
@@ -50,6 +51,14 @@ class BookImagesController < ApplicationController
 		book_image.destroy
 		redirect_to book_images_path
 	end
+
+	def correct_user
+		# binding.pry
+    	@book_image = BookImage.find(params[:id])
+    	  if @book_image.user.id != current_user.id
+      		 redirect_to book_images_path
+    	  end
+  	end
 
 	private
 	def book_image_params

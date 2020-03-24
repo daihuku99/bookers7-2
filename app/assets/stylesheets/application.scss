@@ -15,3 +15,43 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+* {
+	margin: 0;
+	padidng: 0;
+	box-sizing: border-box;
+}
+
+header {
+	height: 80px;
+	background-color: #c0c0c0;
+	margin-top: 0;
+}
+
+.header-title {
+	padding: 20px, 0, 0, 20px;
+}
+
+.header-lists {
+	float: right;
+}
+
+.header-list, li {
+	float: left;
+	list-style: none;
+	padding-right: 30px;
+}
+
+.container {
+	margin-bottom: 30px;
+}
+
+.top-wrapper {
+	text-align: center;
+}
+
+.top-btn {
+	width: 500px;
+	margin: 0 auto;
+}

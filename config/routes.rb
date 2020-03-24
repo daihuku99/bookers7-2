@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
+
+  get 'home/about' => 'homes#about', as: 'about'
+
   devise_for :users, controllers: {
   	sessions: 'users/sessions',
   	registrations: 'users/registrations'
@@ -21,6 +24,14 @@ Rails.application.routes.draw do
 
   get 'users/:id' => 'users#show', as: 'user'
 
+  get 'users/:id/edit' => 'users#edit', as: 'edit_user'
+
+  patch 'users/:id' => 'users#update'
+
   post 'book_images/:id/book_comment' => 'book_comments#create', as: 'book_comment'
+
+  post 'book_image/:id/favorites' => 'favorites#create', as: 'favorites'
+
+  delete 'book_image/:id/favorites' => 'favorites#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
