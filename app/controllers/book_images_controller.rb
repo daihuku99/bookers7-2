@@ -1,9 +1,8 @@
 class BookImagesController < ApplicationController
 		before_action :authenticate_user!
 		before_action :correct_user, only: [:edit, :update, :destroy]
-	def new
-		@book_image_new = BookImage.new
-	end
+		before_action :set_book_new
+	
 
 	def create
 		@book_image_new = BookImage.new(book_image_params)
@@ -20,7 +19,6 @@ class BookImagesController < ApplicationController
 
 	def index
 		@book_images = BookImage.all
-		@book_image_new =BookImage.new
 		@user = current_user
 		# @book_comment = BookComment.find(params[:id]).book_image.id
 		# binding.pry
@@ -28,7 +26,6 @@ class BookImagesController < ApplicationController
 
 	def show
 		@book_image = BookImage.find(params[:id])
-		@book_image_new =BookImage.new
 		@user = @book_image.user
 		@book_comment = BookComment.new
 	end

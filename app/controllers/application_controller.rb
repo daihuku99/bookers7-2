@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
 	end
+
+	def set_book_new
+		@book_image_new =BookImage.new
+	end
 end

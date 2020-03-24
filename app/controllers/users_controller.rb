@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_book_new
+
   def index
   	@users = User.all
     @user = current_user
     # binding.pry
-  	@book_image_new =BookImage.new
   end
 
   def show
   	@user = User.find(params[:id])
     # binding.pry
-    @book_image = BookImage.where(params[:id])
+    @book_image = BookImage.find(params[:id])
   	@book_images = @user.book_images
-  	@book_image_new =BookImage.new
   end
 
   def edit
